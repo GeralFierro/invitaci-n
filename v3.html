@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Georgia', serif;
+            cursor: pointer;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        #video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: contain;
+        }
+
+        .click-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .click-overlay:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .click-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            animation: pulse 2s infinite;
+            pointer-events: none;
+        }
+
+        .click-indicator::before {
+            content: '👆';
+            display: block;
+            font-size: 30px;
+            margin-bottom: 10px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: gold;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .click-indicator {
+                font-size: 16px;
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <!-- Video de fondo con la carta -->
+        <video id="video-background" autoplay muted loop playsinline>
+            <source src="video/video1.mp4" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
+
+        <!-- Overlay clickeable -->
+        <div class="click-overlay" onclick="irAPagina()"></div>
+
+    
+    </div>
+
+    <script>
+        // Función para ir a otra página
+        function irAPagina() {
+            window.location.href = 'v2.html'; // Cambia esto por tu página destino
+        }
+
+        // Crear efecto de estrellas brillantes
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Generar estrellas continuamente
+        setInterval(createSparkle, 300);
+
+        // Asegurar que el video se reproduzca
+        const video = document.getElementById('video-background');
+        video.play().catch(e => console.log('Autoplay prevented:', e));
+
+        // También permitir navegar con Enter o Espacio
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                irAPagina();
+            }
+        });
+    </script>
+</body>
+</html>

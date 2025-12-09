@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación - Mis XV Años</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #e6d9f5;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-section {
+            margin-bottom: 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            background: transparent;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            margin-bottom: 0;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .countdown-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            margin-top: 40px;
+        }
+
+        .countdown-title {
+            font-size: 24px;
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .countdown-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            font-size: 64px;
+            font-weight: bold;
+            color: #9b7cb8;
+        }
+
+        .time-unit {
+            display: inline-block;
+        }
+
+        .time-number {
+            font-size: 64px;
+            font-weight: bold;
+            color: #9b7cb8;
+        }
+
+        .separator {
+            color: #9b7cb8;
+            font-size: 64px;
+            font-weight: normal;
+            margin: 0 5px;
+        }
+
+        /* Estilos para el video clickeable */
+        .video-container-clickable {
+            position: relative;
+            width: 100%;
+            margin: 40px 0;
+            cursor: pointer;
+        }
+
+        .video-container-clickable video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .click-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 10;
+            background: transparent;
+        }
+
+        .click-overlay:hover {
+            background: rgba(118, 75, 162, 0.1);
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .countdown-title {
+                font-size: 20px;
+            }
+
+            .time-number {
+                font-size: 48px;
+            }
+
+            .separator {
+                font-size: 48px;
+            }
+            /* Estilos para el video clickeable */
+.video-container-clickable {
+    position: relative;
+    width: 100%;
+    margin: 0;  /* Sin márgenes */
+    cursor: pointer;
+}
+
+.video-container-clickable video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.click-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 10;
+    background: transparent;
+}
+
+.click-overlay:hover {
+    background: rgba(118, 75, 162, 0.1);
+}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Video 1 -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <video class="lazy-video" muted playsinline>
+                    <source src="video/video2.mp4" type="video/mp4">
+                    Tu navegador no soporta video HTML5.
+                </video>
+            </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <video class="lazy-video" muted playsinline>
+                    <source src="video/video3.mp4" type="video/mp4">
+                    Tu navegador no soporta video HTML5.
+                </video>
+            </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <video class="lazy-video" muted playsinline>
+                    <source src="video/video4.mp4" type="video/mp4">
+                    Tu navegador no soporta video HTML5.
+                </video>
+            </div>
+        </div>
+
+        <!-- Cronómetro Cuenta Regresiva -->
+        <div class="countdown-section">
+            <div class="countdown-title">Tan Solo Faltan</div>
+            
+            <div class="countdown-timer">
+                <span class="time-unit"><span class="time-number" id="days">00</span></span>
+                <span class="separator">:</span>
+                <span class="time-unit"><span class="time-number" id="hours">00</span></span>
+                <span class="separator">:</span>
+                <span class="time-unit"><span class="time-number" id="minutes">00</span></span>
+                <span class="separator">:</span>
+                <span class="time-unit"><span class="time-number" id="seconds">00</span></span>
+            </div>
+            
+            <div class="countdown-subtitle">Para el gran día</div>
+        </div>
+
+        <!-- Video 5 Clickeable (Google Maps) -->
+        <div class="video-container-clickable" onclick="irAPagina()">
+            <video id="video-background" autoplay muted loop playsinline>
+                <source src="video/video5.mp4" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+            <div class="click-overlay"></div>
+        </div>
+       
+        <!-- Video 6 -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <video class="lazy-video" muted playsinline>
+                    <source src="video/video6.mp4" type="video/mp4">
+                    Tu navegador no soporta video HTML5.
+                </video>
+            </div>
+        </div>
+
+        <!-- Video 7 -->
+        <div class="video-section">
+            <div class="video-wrapper">
+                <video class="lazy-video" muted playsinline>
+                    <source src="video/video7.mp4" type="video/mp4">
+                    Tu navegador no soporta video HTML5.
+                </video>
+            </div>
+        </div>
+
+        <!-- Video 8 Clickeable (WhatsApp) -->
+        <div class="video-container-clickable" onclick="irAWhatsApp()">
+            <video class="lazy-video" muted playsinline>
+                <source src="video/video8.mp4" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+            <div class="click-overlay"></div>
+        </div>
+          
+    </div>
+
+    <script>
+        // Función para abrir Google Maps en nueva pestaña
+        function irAPagina() {
+            window.open('https://www.google.com/maps/place/FINCA+VILLA+ALY/@2.7835757,-75.2762586,21z/data=!4m12!1m5!3m4!2zMsKwNDcnMDAuOCJOIDc1wrAxNiczNS40Ilc!8m2!3d2.7835556!4d-75.2765!3m5!1s0x8e3b6c41efb123bf:0xb7fef9c24021afae!8m2!3d2.7835315!4d-75.2762122!16s%2Fg%2F11c57k6flc?hl=es&entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D', '_blank');
+        }
+
+ // Función para abrir WhatsApp DIRECTAMENTE en la app (sin navegador)
+function irAWhatsApp() {
+    const mensaje = 'Hola, confirmo mi asistencia a los XV años';
+    const url = `whatsapp://send?phone=573144318915&text=${encodeURIComponent(mensaje)}`;
+    window.location.href = url;
+}
+
+        // Fecha del evento: 9 de Enero 2026, 7:00 PM
+        const eventDate = new Date(2026, 0, 9, 19, 0, 0);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.querySelector('.countdown-title').textContent = '¡El evento ha comenzado!';
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Actualizar cada segundo
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Configurar reproducción de videos al hacerse visibles
+        const videos = document.querySelectorAll('.lazy-video');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.6
+        };
+
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+                    if (video.paused && !video.dataset.played) {
+                        videos.forEach(v => {
+                            if (v !== video && !v.paused) {
+                                v.pause();
+                            }
+                        });
+                        
+                        video.play().then(() => {
+                            video.dataset.played = 'true';
+                        }).catch(err => console.log('Error al reproducir:', err));
+                    }
+                } else {
+                    if (!video.paused) {
+                        video.pause();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        videos.forEach(video => {
+            videoObserver.observe(video);
+        });
+
+        // Crear efecto de estrellas
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        setInterval(createSparkle, 300);
+    </script>
+</body>
+</html>
